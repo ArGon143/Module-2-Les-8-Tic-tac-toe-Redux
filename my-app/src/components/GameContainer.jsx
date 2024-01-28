@@ -5,11 +5,12 @@ import { useEffect, useState } from 'react';
 import { store } from '../store/store';
 
 export const GameContainer = () => {
-	const [rerender, setRerender] = useState(false);
+	const [rerender, setRerender] = useState(null);
 
 	useEffect(() => {
 		store.subscribe(() => {
-			setRerender(!rerender);
+			store.getState();
+			setRerender(store.getState().squares);
 		});
 	}, [rerender, setRerender]);
 
